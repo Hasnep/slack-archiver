@@ -1,3 +1,5 @@
+module SlackArchiver
+
 import HTTP
 using Memoization
 import Dates
@@ -193,8 +195,8 @@ end
 
 # Main function
 
-function main()
-    config = parse_config(read_file("./config.toml"))
+function archive(config_path)
+    config = parse_config(read_file(config_path))
 
     markdown_file_paths = get_input_markdown_file_paths()
     for markdown_file_path in markdown_file_paths
@@ -214,6 +216,7 @@ function main()
     end
 end
 
-# Run the main function
+# PrecompileTools workload
+include("precompile_workload.jl")
 
-main()
+end # module
