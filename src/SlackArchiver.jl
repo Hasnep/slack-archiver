@@ -216,4 +216,7 @@ function archive(config_path)
     end
 end
 
+# PrecompileTools workload
+include("precompile_workload.jl")
+
 end # module
