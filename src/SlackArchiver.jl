@@ -195,10 +195,9 @@ end
 
 # Main function
 
-function archive(config_path)
+function archive(config_path, markdown_file_paths)
     config = parse_config(read_file(config_path))
 
-    markdown_file_paths = get_input_markdown_file_paths()
     for markdown_file_path in markdown_file_paths
         markdown_file_contents = read_file(markdown_file_path)
         slack_links = extract_slack_links(markdown_file_contents; config.slack_workspace)
@@ -214,6 +213,10 @@ function archive(config_path)
         @info "Updating markdown file `$markdown_file_path`."
         write(markdown_file_path, markdown_file_contents)
     end
+end
+
+function archive(config_path, markdown_file_path::AbstractString)
+    return archive(config_path, (markdown_file_path,))
 end
 
 end # module
