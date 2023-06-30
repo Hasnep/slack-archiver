@@ -1,0 +1,6 @@
+# Fill in this template and rename the file to `config.toml`
+github_username = "my-github-username"
+github_repo_name = "slack-archive"
+git_name = "Slack Archiver"
+git_email = "slack-archiver@example.com"
+slack_workspace = "julialang"
