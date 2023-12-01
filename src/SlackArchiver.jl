@@ -1,3 +1,5 @@
+module SlackArchiver
+
 import HTTP
 using Memoization
 import Dates
@@ -193,10 +195,9 @@ end
 
 # Main function
 
-function main()
-    config = parse_config(read_file("./config.toml"))
+function archive(config_path, markdown_file_paths)
+    config = parse_config(read_file(config_path))
 
-    markdown_file_paths = get_input_markdown_file_paths()
     for markdown_file_path in markdown_file_paths
         markdown_file_contents = read_file(markdown_file_path)
         slack_links = extract_slack_links(markdown_file_contents; config.slack_workspace)
@@ -214,6 +215,8 @@ function main()
     end
 end
 
-# Run the main function
+function archive(config_path, markdown_file_path::AbstractString)
+    return archive(config_path, (markdown_file_path,))
+end
 
-main()
+end # module

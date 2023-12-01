@@ -41,3 +41,11 @@ The files will automatically be overwritten with ones containing the new archive
 ```shell
 julia --project=. src/SlackArchiver.jl ./path-to/my-file.md ./path-to/another-file.md
 ```
+
+```julia
+using SlackArchiver
+SlackArchiver.archive(
+    "path/to/config.toml", 
+    ["./path-to/my-file.md", "./path-to/another-file.md"]
+)
+```
